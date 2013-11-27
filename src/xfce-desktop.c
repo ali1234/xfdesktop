@@ -63,7 +63,7 @@
 #include <glib.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-
+#include <syslog.h>
 #ifdef ENABLE_DESKTOP_ICONS
 #include "xfdesktop-icon-view.h"
 #include "xfdesktop-window-icon-manager.h"
@@ -312,6 +312,8 @@ set_real_root_window_pixmap(GdkScreen *gscreen,
     /* and set the root window's BG pixmap, because aterm is somewhat lame. */
     gdk_window_set_back_pixmap(groot, pmap, FALSE);
     /* there really should be a standard for this crap... */
+
+    syslog(LOG_DEBUG, "set root pixmap XID=0x%x", (int)xid);
 
     gdk_error_trap_pop();
 #endif

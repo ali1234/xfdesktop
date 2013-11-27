@@ -52,6 +52,8 @@
 #include <dbus/dbus-glib.h>
 #endif
 
+#include <syslog.h>
+
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
@@ -63,6 +65,8 @@ main(int argc, char **argv)
 {
     XfdesktopApplication *app;
     int ret = 0;
+
+    openlog("xfdesktop", LOG_PID|LOG_CONS, LOG_USER);
 
 #if !GLIB_CHECK_VERSION (2, 36, 0)
     g_type_init();
